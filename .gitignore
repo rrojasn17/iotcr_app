@@ -91,4 +91,4 @@ sw.*
 *.swp
 
 # Configuración NUXT RRN
-nuxt.config.js
+nuxt.config.*
