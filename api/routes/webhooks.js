@@ -82,7 +82,7 @@ router.post("/getdevicecredentials", async (req, res) => {
 router.post("/saver-webhook", async (req, res) => {
   try {
     if (req.headers.token != process.env.EMQX_API_TOKEN) {
-      req.sendStatus(404);
+      res.status(404).json();
       return;
     }
 
@@ -105,10 +105,10 @@ router.post("/saver-webhook", async (req, res) => {
       console.log("Data created");
     }
 
-    res.sendStatus(200);
+    return res.status(200).json();
   } catch (error) {
     console.log(error);
-    res.sendStatus(200);
+    return res.status(500).json();
   }
 });
 
@@ -116,11 +116,11 @@ router.post("/saver-webhook", async (req, res) => {
 router.post("/alarm-webhook", async (req, res) => {
   try {
     if (req.headers.token != process.env.EMQX_API_TOKEN) {
-      res.sendStatus(404);
+      res.status(404).json();
       return;
     }
 
-    res.sendStatus(200);
+    res.status(200).json();
 
     const incomingAlarm = req.body;
 
@@ -148,7 +148,7 @@ router.post("/alarm-webhook", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.sendStatus(200);
+    return res.status(500).json();
   }
 });
 
