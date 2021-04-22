@@ -44,6 +44,16 @@
                 value="button"
                 label="Button OUTPUT ->"
               ></el-option>
+              <el-option
+                class="text-dark"
+                value="label"
+                label="Label INPUT <-"
+              ></el-option>
+              <el-option
+                class="text-dark"
+                value="rtinfo"
+                label="RT Info INPUT <-"
+              ></el-option>
             </el-select>
 
             <br />
@@ -290,9 +300,9 @@
 
               <br /><br />
             </div>
-
+ 
             <!-- FORM BUTTON TYPE -->
-            <div v-if="widgetType == 'button'">
+            <div v-if="widgetType == 'button' ">
               <base-input
                 v-model="configButton.variableFullName"
                 label="Var Name"
@@ -412,8 +422,8 @@
 
               <br /><br />
             </div>
-
-            <!-- FORM INDICATOR TYPE -->
+   
+           <!-- FORM INDICATOR TYPE -->
             <div v-if="widgetType == 'indicator'">
 
               <base-input
@@ -529,6 +539,216 @@
 
               <br /><br />
             </div>
+
+           <!-- FORM LABEL TYPE -->
+            <div v-if="widgetType == 'label'">
+
+              <base-input
+                v-model="iotLabelConfig.variableFullName"
+                label="Var Name"
+                type="text"
+              >
+              </base-input>
+
+              <base-input
+                v-model="iotLabelConfig.icon"
+                label="Icon"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <base-input
+                v-model="iotLabelConfig.variableSendFreq"
+                label="Send Freq"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <el-select
+                v-model="iotLabelConfig.class"
+                class="select-success"
+                placeholder="Select Class"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-success"
+                  value="success"
+                  label="Success"
+                ></el-option>
+                <el-option
+                  class="text-primary"
+                  value="primary"
+                  label="Primary"
+                ></el-option>
+                <el-option
+                  class="text-warning"
+                  value="warning"
+                  label="Warning"
+                ></el-option>
+                <el-option
+                  class="text-danger"
+                  value="danger"
+                  label="Danger"
+                ></el-option>
+              </el-select>
+
+              <br /><br /><br />
+
+              <el-select
+                v-model="iotLabelConfig.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="col-3"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-4"
+                  label="col-4"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-5"
+                  label="col-5"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="col-6"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-7"
+                  label="col-7"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-8"
+                  label="col-8"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-9"
+                  label="col-9"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-10"
+                  label="col-10"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-11"
+                  label="col-11"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-12"
+                  label="col-12"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
+
+          <!-- FORM RT INFO TYPE -->
+            <div v-if="widgetType == 'rtinfo'">
+
+              <base-input
+                v-model="iotRtInfoConfig.variableFullName"
+                label="Var Name"
+                type="text"
+              ></base-input>
+
+              <base-input
+                v-model="iotRtInfoConfig.unit"
+                label="Unit"
+                type="text"
+              ></base-input>
+
+              <base-input
+                v-model="iotRtInfoConfig.icon"
+                label="Icon"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <base-input
+                v-model="iotRtInfoConfig.variableSendFreq"
+                label="Send Freq"
+                type="text"
+              ></base-input>
+
+              <br />
+
+              <el-select
+                v-model="iotRtInfoConfig.class"
+                class="select-success"
+                placeholder="Select Class"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-success"
+                  value="success"
+                  label="Success"
+                ></el-option>
+                <el-option
+                  class="text-primary"
+                  value="primary"
+                  label="Primary"
+                ></el-option>
+                <el-option
+                  class="text-warning"
+                  value="warning"
+                  label="Warning"
+                ></el-option>
+                <el-option
+                  class="text-danger"
+                  value="danger"
+                  label="Danger"
+                ></el-option>
+              </el-select>
+
+              <br /><br /><br />
+
+              <el-select
+                v-model="iotRtInfoConfig.column"
+                class="select-success"
+                placeholder="Select Column Width"
+                style="width: 100%;"
+              >
+                <el-option
+                  class="text-dark"
+                  value="col-3"
+                  label="col-3"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-4"
+                  label="col-4"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-5"
+                  label="col-5"
+                ></el-option>
+                <el-option
+                  class="text-dark"
+                  value="col-6"
+                  label="col-6"
+                ></el-option>
+              </el-select>
+
+              <br /><br />
+            </div>
+
           </div>
 
           <!-- WIDGET PREVIEW -->
@@ -549,6 +769,15 @@
               v-if="widgetType == 'indicator'"
               :config="iotIndicatorConfig"
             ></Iotindicator>
+            <Iotlabel 
+            v-if="widgetType == 'label'"
+              :config="iotLabelConfig"
+            ></Iotlabel>
+            <Rtinfo 
+            v-if="widgetType == 'rtinfo'"
+              :config="iotRtInfoConfig"
+            ></Rtinfo>
+
           </div>
         </div>
 
@@ -602,6 +831,16 @@
           v-if="widget.widget == 'indicator'"
           :config="widget"
         ></Iotindicator>
+
+        <Iotlabel
+          v-if="widget.widget == 'label'"
+          :config="widget"
+        ></Iotlabel>
+
+        <Rtinfo
+          v-if="widget.widget == 'rtinfo'"
+          :config="widget"
+        ></Rtinfo>
       </div>
     </div>
 
@@ -715,6 +954,7 @@ import { Select, Option } from "element-ui";
 export default {
   middleware: "authenticated",
   components: {
+  
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
     [Option.name]: Option,
@@ -781,6 +1021,23 @@ export default {
         column: "col-6"
       },
 
+      iotLabelConfig: {
+        userId: "userid",
+        selectedDevice: {
+          name: "Home",
+          dId: "8888"
+        },
+        variableFullName: "Mi dato a mostrar",
+        variable: "varname",
+        variableType: "input",
+        variableSendFreq: "30",
+        class: "success",
+        widget: "label",
+        icon: "fa-bolt",
+        column: "col-6",
+        msg: "fff"
+      },
+
       configButton: {
         userId: "userid",
         selectedDevice: {
@@ -797,8 +1054,30 @@ export default {
         column: "col-4",
         widget: "button",
         class: "danger",
-        message: "{'fanstatus': 'stop'}"
+        message: "{'fanstatus': 'stop'}",
+        demo: true
       },
+
+      iotRtInfoConfig: {
+        userId: "userid",
+        selectedDevice: {
+          name: "Home",
+          dId: "8888"
+        },
+        variableFullName: "Mi dato a mostrar",
+        variable: "varname",
+        variableType: "input",
+        unit: "Watts",
+        decimalPlaces: 2,
+        variableSendFreq: "30",
+        class: "success",
+        widget: "rtinfo",
+        icon: "fa-bolt",
+        column: "col-4"
+       
+      },
+
+   
 
 
     };
@@ -949,6 +1228,16 @@ export default {
       if (this.widgetType == "indicator") {
         this.iotIndicatorConfig.variable = this.makeid(10);
         this.widgets.push(JSON.parse(JSON.stringify(this.iotIndicatorConfig)));
+      }
+
+       if (this.widgetType == "label") {
+        this.iotLabelConfig.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.iotLabelConfig)));
+      }
+
+       if (this.widgetType == "rtinfo") {
+        this.iotRtInfoConfig.variable = this.makeid(10);
+        this.widgets.push(JSON.parse(JSON.stringify(this.iotRtInfoConfig)));
       }
 
     },
