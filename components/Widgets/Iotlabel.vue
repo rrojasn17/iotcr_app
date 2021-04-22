@@ -33,7 +33,7 @@
         data() {
             return {
                 receivedTime: 0,
-                value: 0,
+                value: "",
                 time: Date.now(),
                 nowTime: Date.now(),
                 isMounted: false,
@@ -49,7 +49,7 @@
                 deep: true,
                 handler() {
                     setTimeout(() => {
-                        this.value = 0;
+                        this.value = ". . .";
 
                         this.$nuxt.$off(this.topic + "/sdata");
 
