@@ -17,12 +17,13 @@
     ></i>
 
     <div class="row pull-right">
-      <p class="iotfont-size">{{ value.toFixed(config.decimalPlaces) }}</p>
+      <p class="iotfont-size">{{value.toFixed(config.decimalPlaces)}}</p>
       <p class="iotfont-unit">{{ config.unit }}</p>
     </div>
      </div>
   </card>
 </template>
+
 
 <script>
 export default {
@@ -54,6 +55,8 @@ export default {
             "/" +
             this.config.variable;
           this.$nuxt.$on(this.topic + "/sdata", this.procesReceivedData);
+
+          this.getLastData();
 
           window.dispatchEvent(new Event("resize"));
         }, 300);
@@ -89,7 +92,7 @@ export default {
 
         setTimeout(() => {
           if (data.save == 1) {
-            this.getChartData();
+           
           }
         }, 1000);
       } catch (error) {
@@ -127,7 +130,46 @@ export default {
         seconds = seconds / 86400;
         return seconds.toFixed() + " day";
       }
-    }
+    },
+
+    getLastData(){
+
+ 
+                const axiosHeaders = {
+                    headers: {
+                        token: $nuxt.$store.state.auth.token,
+                    },
+                    params: { dId: this.config.selectedDevice.dId, variable: this.config.variable, chartTimeAgo: this.config.chartTimeAgo }
+                }
+
+                this.$axios.get("/get-last-data", axiosHeaders)
+                    .then(res => {
+                        
+                        //this.chartOptions.series[0].data = [];
+                        const data = res.data.data;
+                        console.log(res.data)
+
+                        this.value = data.[0].value;
+
+
+
+                        this.isMounted = true;
+
+
+                        return;
+
+                    })
+                    .catch(e => {
+
+                        console.log(e)
+                        return;
+
+                    });
+
+            },
+
+
+
   }
 };
 </script>

@@ -28,7 +28,7 @@
 
 <script>
     export default {
-        name: 'rtnumberchart',
+        name: 'rtinfo',
         props: ['config'],
         data() {
             return {
@@ -56,6 +56,8 @@
                         this.topic = this.config.userId + '/' + this.config.selectedDevice.dId + '/' + this.config.variable;
                         this.$nuxt.$on(this.topic + "/sdata", this.procesReceivedData);
 
+                        this.getLastData();
+
                    
                         window.dispatchEvent(new Event('resize'));
                     }, 300);
@@ -73,52 +75,7 @@
         methods: {
 
 
-            getChartData() {
 
-                if (this.config.demo) {
-                    this.chartOptions.series[0].data = [[1606659071668, 22], [1606659072668, 27], [1606659073668, 32], [1606659074668, 7]];
-                    this.isMounted = true;
-                    return;
-                }
-
- 
-                const axiosHeaders = {
-                    headers: {
-                        token: $nuxt.$store.state.auth.token,
-                    },
-                    params: { dId: this.config.selectedDevice.dId, variable: this.config.variable, chartTimeAgo: this.config.chartTimeAgo }
-                }
-
-                this.$axios.get("/get-small-charts-data", axiosHeaders)
-                    .then(res => {
-                        
-                        this.chartOptions.series[0].data = [];
-                        const data = res.data.data;
-                        console.log(res.data)
-
-                        data.forEach(element => {
-                            var aux = []
-
-                            aux.push(element.time + (new Date().getTimezoneOffset() * 60 * 1000 * -1));
-                            aux.push(element.value);
-
-                            this.chartOptions.series[0].data.push(aux);
-                        });
-
-                        this.isMounted = true;
-
-
-                        return;
-
-                    })
-                    .catch(e => {
-
-                        console.log(e)
-                        return;
-
-                    });
-
-            },
 
             getIconColorClass() {
 
@@ -144,7 +101,7 @@
 
                     setTimeout(() => {
                         if(data.save==1){
-                            this.getChartData();
+                            //this.getChartData();
                         }  
                     }, 1000);
                 } catch (error) {
@@ -188,6 +145,45 @@
 
 
             },
+
+                getLastData(){
+
+ 
+                const axiosHeaders = {
+                    headers: {
+                        token: $nuxt.$store.state.auth.token,
+                    },
+                    params: { dId: this.config.selectedDevice.dId, variable: this.config.variable, chartTimeAgo: this.config.chartTimeAgo }
+                }
+
+                this.$axios.get("/get-last-data", axiosHeaders)
+                    .then(res => {
+                        
+                        
+                        const data = res.data.data;
+                        console.log(res.data)
+
+                        this.value = data.[0].value;
+
+
+
+                        this.isMounted = true;
+
+
+                        return;
+
+                    })
+                    .catch(e => {
+
+                        console.log(e)
+                        return;
+
+                    });
+
+            },
+
+
+
         }
     };
 </script>
